@@ -10,6 +10,7 @@ import net.minecraft.inventory.IInventory
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraft.item.ItemBlock
 import net.minecraft.tileentity.TileEntityChest
+import net.minecraft.init.Blocks
 
 class TilePrinter extends TileEntityEnvironment {
     val costPerPlacement = 2
@@ -28,8 +29,9 @@ class TilePrinter extends TileEntityEnvironment {
         val y = args.checkInteger(2)
         val z = args.checkInteger(3)
 
-        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!").asInstanceOf[Array[Object]]
+        if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z) != Blocks.air) return Array(Boolean.box(false))
 
+        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!").asInstanceOf[Array[Object]]
 
         worldObj.setBlock(xCoord + x, yCoord + y, zCoord + z, block)
         node.asInstanceOf[Connector].tryChangeBuffer(-costPerPlacement)
@@ -44,6 +46,8 @@ class TilePrinter extends TileEntityEnvironment {
         val y = args.checkInteger(2)
         val z = args.checkInteger(3)
         val meta = args.checkInteger(4)
+
+        if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z) != Blocks.air) return Array(Boolean.box(false))
 
         if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!").asInstanceOf[Array[Object]]
 
