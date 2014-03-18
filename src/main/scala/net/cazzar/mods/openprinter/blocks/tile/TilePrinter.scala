@@ -31,11 +31,11 @@ class TilePrinter extends TileEntityEnvironment {
 
         if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
 
-        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!").asInstanceOf[Array[Object]]
+        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!")
 
         worldObj.setBlock(xCoord + x, yCoord + y, zCoord + z, block)
         node.asInstanceOf[Connector].tryChangeBuffer(-costPerPlacement)
-        Array(Boolean.box(false))
+        Array(Boolean.box(true))
     }
 
     @Callback
@@ -49,7 +49,7 @@ class TilePrinter extends TileEntityEnvironment {
 
         if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
 
-        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!").asInstanceOf[Array[Object]]
+        if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!")
 
         worldObj.setBlock(xCoord + x, yCoord + y, zCoord + z, block, meta, 1 & 2)
         node.asInstanceOf[Connector].tryChangeBuffer(-costPerPlacement)
