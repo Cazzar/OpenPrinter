@@ -11,6 +11,8 @@ import net.minecraftforge.common.util.ForgeDirection
 import net.minecraft.item.ItemBlock
 import net.minecraft.tileentity.TileEntityChest
 import net.minecraft.init.Blocks
+import net.cazzar.corelib.util.ClientUtil
+import net.cazzar.mods.openprinter.entity.fx.SpiralParticle
 
 class TilePrinter extends TileEntityEnvironment {
     val costPerPlacement = 2
@@ -29,7 +31,7 @@ class TilePrinter extends TileEntityEnvironment {
         val y = args.checkInteger(2)
         val z = args.checkInteger(3)
 
-        if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
+        if (!worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
 
         if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!")
 
@@ -47,7 +49,7 @@ class TilePrinter extends TileEntityEnvironment {
         val z = args.checkInteger(3)
         val meta = args.checkInteger(4)
 
-        if (worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
+        if (!worldObj.getBlock(xCoord + x, yCoord + y, zCoord + z).isReplaceable(worldObj, x, y, z)) return Array(Boolean.box(false))
 
         if (!searchForBlock(block)) return Array("Block \"" + blockNotation + "\" was not found!")
 
